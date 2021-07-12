@@ -1,5 +1,5 @@
 import React from 'react';
-import RiShoppingCart2Line from 'react-icons/ri';
+import { RiShoppingCart2Line } from 'react-icons/ri';
 
 class ShoppingCart extends React.Component {
   render() {
@@ -11,3 +11,5 @@ class ShoppingCart extends React.Component {
     );
   }
 }
+
+export default ShoppingCart;
