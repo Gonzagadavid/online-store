@@ -102,7 +102,7 @@ Neste projeto você criará uma versão simplificada, sem persistência no banco
 
   - Serão 4 dias de projeto;
 
-  - Data de entrega para avaliação final do projeto: `22/07/2021 - 14:00h
+  - Data de entrega para avaliação final do projeto: `22/07/2021 - 14:00h`
 
 ---
 
