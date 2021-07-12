@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { RiShoppingCart2Line } from 'react-icons/ri';
-
+//
 class Main extends Component {
   render() {
     return (
