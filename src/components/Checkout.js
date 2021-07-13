@@ -1,4 +1,6 @@
 import React from 'react';
+import { string, number, arrayOf, shape } from 'prop-types';
+import CartItem from './CartItem';
 
 class Checkout extends React.Component {
   constructor() {
@@ -7,9 +9,9 @@ class Checkout extends React.Component {
     this.state = {
       fullname: '',
       email: '',
-      CPF: '',
+      cpf: '',
       phone: '',
-      CEP: '',
+      cep: '',
       address: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +27,7 @@ class Checkout extends React.Component {
     const { fullname } = this.state;
     return (
       <label
-        data-testid="checkout-fullname"
+        data-testid="checkout-fullname-label"
         htmlFor="checkout-fullname"
       >
         Nome Completo
@@ -44,7 +46,7 @@ class Checkout extends React.Component {
     const { email } = this.state;
     return (
       <label
-        data-testid="checkout-email"
+        data-testid="checkout-email-label"
         htmlFor="checkout-email"
       >
         Email
@@ -60,19 +62,19 @@ class Checkout extends React.Component {
   }
 
   renderCPFInput() {
-    const { CPF } = this.state;
+    const { cpf } = this.state;
     return (
       <label
-        data-testid="checkout-CPF"
-        htmlFor="checkout-CPF"
+        data-testid="checkout-cpf-label"
+        htmlFor="checkout-cpf"
       >
         CPF
         <input
-          data-testid="checkout-CPF"
+          data-testid="checkout-cpf"
           type="text"
-          id="checkout-CPF"
-          value={ CPF }
-          onChange={ (event) => this.handleChange(event, 'CPF') }
+          id="checkout-cpf"
+          value={ cpf }
+          onChange={ (event) => this.handleChange(event, 'cpf') }
         />
       </label>
     );
@@ -82,7 +84,7 @@ class Checkout extends React.Component {
     const { phone } = this.state;
     return (
       <label
-        data-testid="checkout-phone"
+        data-testid="checkout-phone-label"
         htmlFor="checkout-phone"
       >
         Telefone
@@ -98,19 +100,19 @@ class Checkout extends React.Component {
   }
 
   renderCEPInput() {
-    const { CEP } = this.state;
+    const { cep } = this.state;
     return (
       <label
-        data-testid="checkout-CEP"
-        htmlFor="checkout-CEP"
+        data-testid="checkout-cep-label"
+        htmlFor="checkout-cep"
       >
         CEP
         <input
-          data-testid="checkout-CEP"
+          data-testid="checkout-cep"
           type="text"
-          id="checkout-CEP"
-          value={ CEP }
-          onChange={ (event) => this.handleChange(event, 'CEP') }
+          id="checkout-cep"
+          value={ cep }
+          onChange={ (event) => this.handleChange(event, 'cep') }
         />
       </label>
     );
@@ -120,7 +122,7 @@ class Checkout extends React.Component {
     const { address } = this.state;
     return (
       <label
-        data-testid="checkout-address"
+        data-testid="checkout-address-label"
         htmlFor="checkout-address"
       >
         Endereço
@@ -136,17 +138,47 @@ class Checkout extends React.Component {
   }
 
   render() {
+    const { cartList } = this.props;
     return (
-      <form>
-        {this.renderFullNameInput()}
-        {this.renderEmailInput()}
-        {this.renderCPFInput()}
-        {this.renderPhoneInput()}
-        {this.renderCEPInput()}
-        {this.renderAddressInput()}
-      </form>
+      <div>
+        <div>
+          {
+            cartList.map((
+              { title, image, price }, index,
+            ) => (<CartItem
+              key={ index }
+              title={ title }
+              image={ image }
+              price={ price }
+            />))
+          }
+        </div>
+        <form>
+          {this.renderFullNameInput()}
+          {this.renderEmailInput()}
+          {this.renderCPFInput()}
+          {this.renderPhoneInput()}
+          {this.renderCEPInput()}
+          {this.renderAddressInput()}
+        </form>
+        <div>
+          <p>Total: R$</p>
+          {cartList.reduce((a, b) => a + (b.price || 0), 0)}
+        </div>
+      </div>
     );
   }
 }
+
+Checkout.propTypes = {
+  cartList: arrayOf(
+    shape({
+      title: string,
+      thumbnail: string,
+      id: string,
+      price: number,
+    }),
+  ).isRequired,
+};
 
 export default Checkout;

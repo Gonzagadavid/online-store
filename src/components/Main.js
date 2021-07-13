@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { func } from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import './Main.css';
 import NavMain from './NavMain';
@@ -49,7 +50,8 @@ class Main extends Component {
   }
 
   render() {
-    const { categoriesList, query, itemList } = this.state;
+    const { categoriesList, query, itemList, cartList } = this.state;
+    const { addItemCart } = this.props;
     return (
       <div className="Main">
         <NavMain categoriesList={ categoriesList } handler={ this.handlerCategory } />
@@ -58,12 +60,17 @@ class Main extends Component {
             query={ query }
             handlerInput={ this.handlerInput }
             api={ this.apiItems }
+            cartList={ cartList }
           />
-          <CardList itemList={ itemList } />
+          <CardList itemList={ itemList } addItem={ addItemCart } />
         </div>
       </div>
     );
   }
 }
+
+Main.propTypes = {
+  addItemCart: func.isRequired,
+};
 
 export default Main;
