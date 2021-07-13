@@ -1,0 +1,16 @@
+.Main {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.Main nav {
+  border: solid 1px black;
+  width: 20%;
+}
+
+.Main main {
+  border: solid 1px black;
+  text-align: center;
+  width: 80%;
+}
