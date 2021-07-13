@@ -1,0 +1,18 @@
+.Card {
+  background-color: rgb(130, 124, 136);
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px black;
+  font-size: 25px;
+  margin: 20px;
+  padding: 10px;
+  width: 250px;
+}
+
+.Card h3 {
+  font-size: 20px;
+  word-break: break-word;
+}
+
+.Card img {
+  width: 100px;
+}
