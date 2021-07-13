@@ -7,16 +7,21 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <label htmlFor="input-search">
-          <BsSearch />
-          <input id="input-search" />
-        </label>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          <RiShoppingCart2Line />
-        </Link>
+        <nav>
+
+        </nav>
+        <main>
+          <label htmlFor="input-search">
+            <BsSearch />
+            <input id="input-search" />
+          </label>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <RiShoppingCart2Line />
+          </Link>
+        </main>
       </div>
     );
   }
