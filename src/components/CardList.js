@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { string, number, arrayOf, shape } from 'prop-types';
+import { string, number, arrayOf, shape, func } from 'prop-types';
 import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { itemList } = this.props;
+    const { itemList, addItem } = this.props;
     return (
       <main>
         {
@@ -16,6 +16,7 @@ class CardList extends Component {
               key={ id }
               imagePath={ thumbnail }
               price={ price }
+              addItem={ addItem }
             />))
             : <p>Nenhum produto foi encontrado</p>
         }
@@ -33,6 +34,7 @@ CardList.propTypes = {
       price: number,
     }),
   ).isRequired,
+  addItem: func.isRequired,
 };
 
 export default CardList;
