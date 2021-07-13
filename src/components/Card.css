@@ -1,16 +1,16 @@
 .Card {
-  font-size: 25px;
-  width: 250px;
   background-color: rgb(130, 124, 136);
-  margin: 20px;
   border-radius: 20px;
   box-shadow: 5px 5px 5px black;
+  font-size: 25px;
+  margin: 20px;
   padding: 10px;
+  width: 250px;
 }
 
 .Card h3 {
-  word-break: break-word;
   font-size: 20px;
+  word-break: break-word;
 }
 
 .Card img {
