@@ -7,7 +7,7 @@ import Main from './components/Main';
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" component={ Main } />
+      <Route exact path="/" component={ Main } />
       <Route path="/shopping-cart" component={ ShoppingCart } />
     </BrowserRouter>
   );
