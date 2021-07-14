@@ -61,7 +61,7 @@ class ProductDetails extends Component {
             type="button"
             onClick={ () => addItemCart({ title, image, price }) }
           >
-            Adicionar ao Carrinho
+            Adicionar  ao  Carrinho
           </button>
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
             <RiShoppingCart2Line />
