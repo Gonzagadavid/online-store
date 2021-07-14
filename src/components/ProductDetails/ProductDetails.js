@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { shape, string, func } from 'prop-types';
+import { RiShoppingCart2Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
 class ProductDetails extends Component {
@@ -55,11 +57,15 @@ class ProductDetails extends Component {
               </li>)) }
           </ul>
           <button
+            data-testid="product-detail-add-to-cart"
             type="button"
             onClick={ () => addItemCart({ title, image, price }) }
           >
             Adicionar ao Carrinho
           </button>
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <RiShoppingCart2Line />
+          </Link>
         </div>
       </main>
     );
