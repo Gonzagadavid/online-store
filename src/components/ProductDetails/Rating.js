@@ -49,6 +49,7 @@ class Rating extends Component {
       >
         Comentários
         <textarea
+          className="product-detail-evaluation"
           data-testid="product-detail-evaluation"
           type="text"
           id="product-detail-evaluation"
