@@ -53,6 +53,7 @@ Card.propTypes = {
   idItem: string.isRequired,
   category: string.isRequired,
   query: string.isRequired,
+
 };
 
 export default Card;
