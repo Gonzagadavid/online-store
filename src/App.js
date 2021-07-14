@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingCart from './components/ShoppingCart';
 import './App.css';
 import Main from './components/Main';
-import Checkout from './components/Checkout';
+import ProductDetails from './components/ProductDetails';
 
 class App extends Component {
   constructor() {
@@ -22,19 +22,25 @@ class App extends Component {
     const { cartList } = this.state;
     return (
       <BrowserRouter>
-        <Route
-          exact
-          path="/"
-          render={ (props) => <Main { ...props } addItemCart={ this.addItemCart } /> }
-        />
-        <Route
-          path="/shopping-cart"
-          render={ (props) => <ShoppingCart { ...props } cartList={ cartList } /> }
-        />
-        <Route
-          path="/checkout"
-          render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ (props) => <Main { ...props } addItemCart={ this.addItemCart } /> }
+          />
+          <Route
+            path="/shopping-cart"
+            render={ (props) => <ShoppingCart { ...props } cartList={ cartList } /> }
+          />
+          <Route
+            path="/details/:id/:category/:query"
+            render={ (props) => (<ProductDetails
+              { ...props }
+              addItemCart={ this.addItemCart }
+            />) }
+          />
+        </Switch>
+
       </BrowserRouter>
     );
   }

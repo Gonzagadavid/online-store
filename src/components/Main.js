@@ -50,7 +50,7 @@ class Main extends Component {
   }
 
   render() {
-    const { categoriesList, query, itemList, cartList } = this.state;
+    const { categoriesList, query, itemList, cartList, category } = this.state;
     const { addItemCart } = this.props;
     return (
       <div className="Main">
@@ -62,7 +62,12 @@ class Main extends Component {
             api={ this.apiItems }
             cartList={ cartList }
           />
-          <CardList itemList={ itemList } addItem={ addItemCart } />
+          <CardList
+            itemList={ itemList }
+            addItem={ addItemCart }
+            category={ category }
+            query={ query }
+          />
         </div>
       </div>
     );

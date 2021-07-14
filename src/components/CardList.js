@@ -4,7 +4,7 @@ import Card from './Card';
 
 class CardList extends Component {
   render() {
-    const { itemList, addItem } = this.props;
+    const { itemList, addItem, query, category } = this.props;
     return (
       <main>
         {
@@ -17,6 +17,9 @@ class CardList extends Component {
               imagePath={ thumbnail }
               price={ price }
               addItem={ addItem }
+              query={ query }
+              category={ category }
+              idItem={ id }
             />))
             : <p>Nenhum produto foi encontrado</p>
         }
@@ -35,6 +38,8 @@ CardList.propTypes = {
     }),
   ).isRequired,
   addItem: func.isRequired,
+  category: string.isRequired,
+  query: string.isRequired,
 };
 
 export default CardList;
