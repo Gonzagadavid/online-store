@@ -23,115 +23,23 @@ class Checkout extends React.Component {
     });
   }
 
-  renderFullNameInput() {
-    const { fullname } = this.state;
+  renderInput(inputName, labelText) {
+    const estado = this.state;
+    console.log(estado);
+    const inputN = estado[inputName];
+    console.log(inputN);
     return (
       <label
-        data-testid="checkout-fullname-label"
-        htmlFor="checkout-fullname"
+        data-testid={ `checkout-${inputName}-label` }
+        htmlFor={ `checkout-${inputName}` }
       >
-        Nome Completo
+        { labelText }
         <input
-          data-testid="checkout-fullname"
+          data-testid={ `checkout-${inputName}` }
           type="text"
-          id="checkout-fullname"
-          value={ fullname }
-          onChange={ (event) => this.handleChange(event, 'fullname') }
-        />
-      </label>
-    );
-  }
-
-  renderEmailInput() {
-    const { email } = this.state;
-    return (
-      <label
-        data-testid="checkout-email-label"
-        htmlFor="checkout-email"
-      >
-        Email
-        <input
-          data-testid="checkout-email"
-          type="text"
-          id="checkout-email"
-          value={ email }
-          onChange={ (event) => this.handleChange(event, 'email') }
-        />
-      </label>
-    );
-  }
-
-  renderCPFInput() {
-    const { cpf } = this.state;
-    return (
-      <label
-        data-testid="checkout-cpf-label"
-        htmlFor="checkout-cpf"
-      >
-        CPF
-        <input
-          data-testid="checkout-cpf"
-          type="text"
-          id="checkout-cpf"
-          value={ cpf }
-          onChange={ (event) => this.handleChange(event, 'cpf') }
-        />
-      </label>
-    );
-  }
-
-  renderPhoneInput() {
-    const { phone } = this.state;
-    return (
-      <label
-        data-testid="checkout-phone-label"
-        htmlFor="checkout-phone"
-      >
-        Telefone
-        <input
-          data-testid="checkout-phone"
-          type="text"
-          id="checkout-phone"
-          value={ phone }
-          onChange={ (event) => this.handleChange(event, 'phone') }
-        />
-      </label>
-    );
-  }
-
-  renderCEPInput() {
-    const { cep } = this.state;
-    return (
-      <label
-        data-testid="checkout-cep-label"
-        htmlFor="checkout-cep"
-      >
-        CEP
-        <input
-          data-testid="checkout-cep"
-          type="text"
-          id="checkout-cep"
-          value={ cep }
-          onChange={ (event) => this.handleChange(event, 'cep') }
-        />
-      </label>
-    );
-  }
-
-  renderAddressInput() {
-    const { address } = this.state;
-    return (
-      <label
-        data-testid="checkout-address-label"
-        htmlFor="checkout-address"
-      >
-        Endereço
-        <input
-          data-testid="checkout-address"
-          type="text"
-          id="checkout-address"
-          value={ address }
-          onChange={ (event) => this.handleChange(event, 'address') }
+          id={ `checkout-${inputName}` }
+          value={ inputN }
+          onChange={ (event) => this.handleChange(event, inputName) }
         />
       </label>
     );
@@ -154,12 +62,12 @@ class Checkout extends React.Component {
           }
         </div>
         <form>
-          {this.renderFullNameInput()}
-          {this.renderEmailInput()}
-          {this.renderCPFInput()}
-          {this.renderPhoneInput()}
-          {this.renderCEPInput()}
-          {this.renderAddressInput()}
+          {this.renderInput('fullname', 'Nome')}
+          {this.renderInput('email', 'Email')}
+          {this.renderInput('cpf', 'CPF')}
+          {this.renderInput('phone', 'Telefone')}
+          {this.renderInput('cep', 'CEP')}
+          {this.renderInput('address', 'Endereço')}
         </form>
         <div>
           <p>Total: R$</p>
