@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, number, arrayOf, shape } from 'prop-types';
-import CartItem from './CartItem';
+import CartItem from '../ShoppingCart/CartItem';
 
 class Checkout extends React.Component {
   constructor() {

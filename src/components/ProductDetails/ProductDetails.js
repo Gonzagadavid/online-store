@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { shape, string, func } from 'prop-types';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery } from '../../services/api';
 
 class ProductDetails extends Component {
   constructor() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { string, number } from 'prop-types';
-import './Card.css';
+import '../Main/CardList/Card.css';
 
 class CartItem extends Component {
   render() {
