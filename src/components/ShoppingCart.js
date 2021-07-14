@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, number, arrayOf, shape } from 'prop-types';
 import { RiShoppingCart2Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
 class ShoppingCart extends React.Component {
@@ -10,6 +11,9 @@ class ShoppingCart extends React.Component {
       <div data-testid="shopping-cart-empty-message">
         <h3>Seu carrinho está vazio</h3>
         <RiShoppingCart2Line />
+        <Link to="/checkout">
+          <button data-testid="checkout-products" type="button">Comprar Agora</button>
+        </Link>
         <p data-testid="shopping-cart-product-quantity">{ cartList.length }</p>
         <div>
           {
