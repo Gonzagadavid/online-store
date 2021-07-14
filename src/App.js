@@ -4,6 +4,7 @@ import ShoppingCart from './components/ShoppingCart';
 import './App.css';
 import Main from './components/Main';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,10 @@ class App extends Component {
               { ...props }
               addItemCart={ this.addItemCart }
             />) }
+          />
+          <Route
+            path="/checkout"
+            render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
           />
         </Switch>
 

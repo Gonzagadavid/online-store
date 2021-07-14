@@ -24,23 +24,25 @@ class Card extends Component {
     const image = imagePath.replace(/-I.jpg/g, '-O.jpg');
 
     return (
-      <Link
-        data-testid="product-detail-link"
-        to={ `/details/${idItem}/${category || 'off'}/${query || 'off'}` }
-      >
-        <div className="Card" data-testid="product">
-          <h3>{ title }</h3>
-          <img src={ image } alt={ title } />
-          <p>{ `R$: ${price.toFixed(2)}` }</p>
-          <button
-            type="button"
-            data-testid="product-add-to-cart"
-            onClick={ () => addItem({ title, image, price }) }
-          >
-            Adicionar ao Carrinho
-          </button>
-        </div>
-      </Link>
+      <div className="Card" data-testid="product">
+        <Link
+          data-testid="product-detail-link"
+          to={ `/details/${idItem}/${category || 'off'}/${query || 'off'}` }
+        >
+          <div>
+            <h3>{ title }</h3>
+            <img src={ image } alt={ title } />
+            <p>{ `R$: ${price.toFixed(2)}` }</p>
+          </div>
+        </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => addItem({ title, image, price }) }
+        >
+          Adicionar ao Carrinho
+        </button>
+      </div>
     );
   }
 }
