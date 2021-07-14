@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../../services/api';
 import './Main.css';
-import NavMain from './NavMain';
-import HeaderMain from './HeaderMain';
-import CardList from './CardList';
+import NavMain from './Nav/NavMain';
+import HeaderMain from './Header/HeaderMain';
+import CardList from './CardList/CardList';
 //
 class Main extends Component {
   constructor() {
