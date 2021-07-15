@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { shape, string, func } from 'prop-types';
+import { shape, string, func, number } from 'prop-types';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
@@ -35,12 +35,13 @@ class ProductDetails extends Component {
 
   render() {
     const { item } = this.state;
-    const { addItemCart, match } = this.props;
+    const { addItemCart, match, cartQty } = this.props;
     const { id, freeShipping } = match.params;
     const { title, price, thumbnail, attributes } = item;
     const image = thumbnail.replace(/-I.jpg/g, '-O.jpg');
     return (
       <main>
+        <Link to="/">HOME</Link>
         <h3
           data-testid="product-detail-name"
         >
@@ -69,6 +70,7 @@ class ProductDetails extends Component {
             Adicionar  ao  Carrinho
           </button>
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <span data-testid="shopping-cart-size">{cartQty}</span>
             <RiShoppingCart2Line />
           </Link>
         </div>
@@ -88,6 +90,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addItemCart: func.isRequired,
+  cartQty: number.isRequired,
 };
 
 export default ProductDetails;

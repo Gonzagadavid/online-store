@@ -63,12 +63,16 @@ class CartItem extends Component {
 
 CartItem.propTypes = {
   title: string.isRequired,
-  id: string.isRequired,
+  id: string,
   image: string.isRequired,
   price: number.isRequired,
   setQuantity: func.isRequired,
   quantity: number.isRequired,
   removeItem: func.isRequired,
+};
+
+CartItem.defaultProps = {
+  id: 'not found',
 };
 
 export default CartItem;
