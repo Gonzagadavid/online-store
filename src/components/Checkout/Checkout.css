@@ -1,0 +1,49 @@
+.checkout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.checkout-item-list {
+  border: solid 1px black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 250px;
+  text-align: center;
+  width: 80%;
+}
+
+.checkout-form {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 50%;
+}
+
+.checkout-form-item {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 15%;
+  width: 40%;
+}
+
+.checkout-form-input {
+  display: block;
+  width: 100%;
+}
+
+.checkout-total-div {
+  border: solid 1px black;
+  display: flex;
+  width: 50%;
+}
+
+.checkout-total {
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin-left: 15%;
+}
