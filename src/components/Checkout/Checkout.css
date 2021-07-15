@@ -38,6 +38,7 @@
 .checkout-total-div {
   border: solid 1px black;
   display: flex;
+  min-height: 10%;
   width: 50%;
 }
 
