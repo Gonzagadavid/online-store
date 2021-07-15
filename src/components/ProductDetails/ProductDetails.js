@@ -25,8 +25,8 @@ class ProductDetails extends Component {
   async apiItem() {
     const { match } = this.props;
     const { id, category, query } = match.params;
-    const categoryItem = category === 'off' ? false : category;
-    const queryItem = query === 'off' ? false : query;
+    const categoryItem = category === '0' ? false : category;
+    const queryItem = query === '0' ? false : query;
     const itens = await getProductsFromCategoryAndQuery(categoryItem, queryItem);
     const itemFind = itens.results.find((item) => item.id === id);
     this.setState({ item: itemFind });
@@ -35,7 +35,7 @@ class ProductDetails extends Component {
   render() {
     const { item } = this.state;
     const { addItemCart, match, cartQty } = this.props;
-    const { id } = match.params;
+    const { id, freeShipping } = match.params;
     const { title, price, thumbnail, attributes } = item;
     const image = thumbnail.replace(/-I.jpg/g, '-O.jpg');
     return (
@@ -45,6 +45,8 @@ class ProductDetails extends Component {
           data-testid="product-detail-name"
         >
           { `${title} - R$ ${price.toFixed(2)}` }
+          {freeShipping === 'true'
+            ? <p data-testid="free-shipping">Frete Grátis</p> : <br />}
 
         </h3>
         <div>
@@ -83,6 +85,7 @@ ProductDetails.propTypes = {
       id: string,
       category: string,
       query: string,
+      freeShipping: string,
     }),
   }).isRequired,
   addItemCart: func.isRequired,
