@@ -46,7 +46,7 @@ class ShoppingCart extends React.Component {
         <main>
           {
             cartList.map((
-              { title, image, price, id, quantity }, index,
+              { title, image, price, id, quantity, available }, index,
             ) => (<CartItem
               key={ index }
               title={ title }
@@ -56,6 +56,7 @@ class ShoppingCart extends React.Component {
               id={ id }
               quantity={ quantity }
               removeItem={ removeItem }
+              available={ available }
             />))
           }
         </main>
