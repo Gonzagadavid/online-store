@@ -86,6 +86,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addItemCart: func.isRequired,
+  cartQty: number.isRequired,
 };
 
 export default ProductDetails;
