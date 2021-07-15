@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string, number, func } from 'prop-types';
+import { string, number, func, bool } from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Card.css';
 
@@ -20,19 +20,21 @@ class Card extends Component {
   }
 
   render() {
-    const { title, imagePath, price, addItem, category, query, idItem } = this.props;
+    const {
+      title, imagePath, price, addItem, category, query, idItem, freeShipping,
+    } = this.props;
     const image = imagePath.replace(/-I.jpg/g, '-O.jpg');
-
     return (
       <div className="Card" data-testid="product">
         <Link
           data-testid="product-detail-link"
-          to={ `/details/${idItem}/${category || 'off'}/${query || 'off'}` }
+          to={ `/details/${idItem}/${category || '0'}/${query || '0'}/${freeShipping}` }
         >
           <div>
             <h3>{ title }</h3>
             <img src={ image } alt={ title } />
             <p>{ `R$: ${price.toFixed(2)}` }</p>
+            {freeShipping ? <h4 data-testid="free-shipping">Frete Grátis</h4> : <br />}
           </div>
         </Link>
         <button
@@ -55,6 +57,7 @@ Card.propTypes = {
   idItem: string.isRequired,
   category: string.isRequired,
   query: string.isRequired,
+  freeShipping: bool.isRequired,
 
 };
 

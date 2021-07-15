@@ -10,7 +10,7 @@ class CardList extends Component {
         {
           itemList.length
             ? itemList.map((
-              { title, price, thumbnail, id },
+              { title, price, thumbnail, id, shipping },
             ) => (<Card
               title={ title }
               key={ id }
@@ -20,6 +20,7 @@ class CardList extends Component {
               query={ query }
               category={ category }
               idItem={ id }
+              freeShipping={ shipping.free_shipping }
             />))
             : <p>Nenhum produto foi encontrado</p>
         }
