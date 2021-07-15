@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../../services/api';
+
 import './Main.css';
 import NavMain from './Nav/NavMain';
 import HeaderMain from './Header/HeaderMain';
