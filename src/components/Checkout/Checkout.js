@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number, arrayOf, shape } from 'prop-types';
+import { string, number, arrayOf, shape, func } from 'prop-types';
 import CartItem from '../ShoppingCart/CartItem';
 
 class Checkout extends React.Component {
@@ -25,9 +25,7 @@ class Checkout extends React.Component {
 
   renderInput(inputName, labelText) {
     const estado = this.state;
-    console.log(estado);
     const inputN = estado[inputName];
-    console.log(inputN);
     return (
       <label
         data-testid={ `checkout-${inputName}-label` }
@@ -46,18 +44,22 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { cartList } = this.props;
+    const { cartList, removeItem, setQuantity } = this.props;
     return (
       <div>
         <div>
           {
             cartList.map((
-              { title, image, price }, index,
+              { title, image, price, id, quantity }, index,
             ) => (<CartItem
               key={ index }
               title={ title }
               image={ image }
               price={ price }
+              id={ id }
+              quantity={ quantity }
+              removeItem={ removeItem }
+              setQuantity={ setQuantity }
             />))
           }
         </div>
@@ -87,6 +89,8 @@ Checkout.propTypes = {
       price: number,
     }),
   ).isRequired,
+  removeItem: func.isRequired,
+  setQuantity: func.isRequired,
 };
 
 export default Checkout;

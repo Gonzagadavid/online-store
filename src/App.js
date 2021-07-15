@@ -75,7 +75,7 @@ class App extends Component {
             />) }
           />
           <Route
-            path="/details/:id/:category/:query"
+            path="/details/:id/:category/:query/:freeShipping"
             render={ (props) => (<ProductDetails
               { ...props }
               addItemCart={ this.addItemCart }
@@ -83,7 +83,14 @@ class App extends Component {
           />
           <Route
             path="/checkout"
-            render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
+            render={ (
+              props,
+            ) => (<Checkout
+              { ...props }
+              cartList={ cartList }
+              removeItem={ this.removeItem }
+              setQuantity={ this.setQuantity }
+            />) }
           />
         </Switch>
 
