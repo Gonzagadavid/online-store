@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shape, string, func } from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
+import Rating from './Rating';
 
 class ProductDetails extends Component {
   constructor() {
@@ -31,7 +32,8 @@ class ProductDetails extends Component {
 
   render() {
     const { item } = this.state;
-    const { addItemCart } = this.props;
+    const { addItemCart, match } = this.props;
+    const { id } = match.params;
     const { title, price, thumbnail, attributes } = item;
     const image = thumbnail.replace(/-I.jpg/g, '-O.jpg');
     return (
@@ -61,6 +63,7 @@ class ProductDetails extends Component {
             Adicionar ao Carrinho
           </button>
         </div>
+        <Rating id={ id } />
       </main>
     );
   }

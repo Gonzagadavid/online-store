@@ -1,0 +1,15 @@
+.rating-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-detail-evaluation {
+  height: 80px;
+  width: 30%;
+}
+
+.send-evaluation {
+  align-items: center;
+  margin-left: 10%;
+  width: 15%;
+}
