@@ -11,12 +11,46 @@ class App extends Component {
     super();
     this.state = {
       cartList: [],
+      itemList: [],
+
     };
+    this.setQuantity = this.setQuantity.bind(this);
     this.addItemCart = this.addItemCart.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.addQty = this.addQty.bind(this);
+  }
+
+  setQuantity(quantity, id) {
+    this.setState((prev) => {
+      const cartList = prev.cartList.map((item) => {
+        if (item.id === id) item.quantity = quantity;
+        return item;
+      });
+      return { cartList };
+    });
+  }
+
+  addQty() {
+    const { itemList } = this.state;
+    const cartList = itemList.reduce((list, item) => {
+      const includes = list.some(({ id }) => item.id === id);
+      if (includes) return list;
+      item.quantity = itemList.filter(({ id }) => id === item.id).length;
+      return [...list, item];
+    }, []);
+    this.setState({ cartList });
+  }
+
+  removeItem(idItem) {
+    this.setState((prev) => {
+      const clearList = prev.itemList.filter(({ id }) => id !== idItem);
+      return { itemList: clearList };
+    }, () => this.addQty());
   }
 
   addItemCart(item) {
-    this.setState((prevState) => ({ cartList: [...prevState.cartList, item] }));
+    this.setState((prevState) => ({ itemList: [...prevState.cartList, item] }),
+      () => this.addQty());
   }
 
   render() {
@@ -31,7 +65,14 @@ class App extends Component {
           />
           <Route
             path="/shopping-cart"
-            render={ (props) => <ShoppingCart { ...props } cartList={ cartList } /> }
+            render={ (
+              props,
+            ) => (<ShoppingCart
+              { ...props }
+              cartList={ cartList }
+              removeItem={ this.removeItem }
+              setQuantity={ this.setQuantity }
+            />) }
           />
           <Route
             path="/details/:id/:category/:query"

@@ -16,3 +16,7 @@
 .Card img {
   width: 100px;
 }
+
+.Card span {
+  margin: 0 20px;
+}
