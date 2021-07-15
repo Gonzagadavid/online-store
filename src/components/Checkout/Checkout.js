@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, number, arrayOf, shape, func } from 'prop-types';
 import CartItem from '../ShoppingCart/CartItem';
+import './Checkout.css';
 
 class Checkout extends React.Component {
   constructor() {
@@ -28,11 +29,13 @@ class Checkout extends React.Component {
     const inputN = estado[inputName];
     return (
       <label
+        className="checkout-form-item"
         data-testid={ `checkout-${inputName}-label` }
         htmlFor={ `checkout-${inputName}` }
       >
         { labelText }
         <input
+          className="checkout-form-input"
           data-testid={ `checkout-${inputName}` }
           type="text"
           id={ `checkout-${inputName}` }
@@ -46,8 +49,8 @@ class Checkout extends React.Component {
   render() {
     const { cartList, removeItem, setQuantity } = this.props;
     return (
-      <div>
-        <div>
+      <div className="checkout">
+        <div className="checkout-item-list">
           {
             cartList.map((
               { title, image, price, id, quantity }, index,
@@ -63,7 +66,7 @@ class Checkout extends React.Component {
             />))
           }
         </div>
-        <form>
+        <form className="checkout-form">
           {this.renderInput('fullname', 'Nome')}
           {this.renderInput('email', 'Email')}
           {this.renderInput('cpf', 'CPF')}
@@ -71,9 +74,11 @@ class Checkout extends React.Component {
           {this.renderInput('cep', 'CEP')}
           {this.renderInput('address', 'Endereço')}
         </form>
-        <div>
-          <p>Total: R$</p>
-          {cartList.reduce((a, b) => a + (b.price || 0), 0)}
+        <div className="checkout-total-div">
+          <p className="checkout-total">
+            Total: R$
+            {cartList.reduce((a, b) => (a + (b.price || 0) * b.quantity), 0).toFixed(2)}
+          </p>
         </div>
       </div>
     );
