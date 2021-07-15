@@ -37,6 +37,7 @@ class ShoppingCart extends React.Component {
     const { cartList, removeItem, setQuantity } = this.props;
     return (
       <div data-testid="shopping-cart-empty-message" className="Main-container">
+        <Link to="/">HOME</Link>
         <h3>Seu carrinho está vazio</h3>
         <RiShoppingCart2Line />
         <Link to="/checkout">

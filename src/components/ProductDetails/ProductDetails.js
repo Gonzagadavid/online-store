@@ -34,12 +34,13 @@ class ProductDetails extends Component {
 
   render() {
     const { item } = this.state;
-    const { addItemCart, match } = this.props;
+    const { addItemCart, match, cartQty } = this.props;
     const { id } = match.params;
     const { title, price, thumbnail, attributes } = item;
     const image = thumbnail.replace(/-I.jpg/g, '-O.jpg');
     return (
       <main>
+        <Link to="/">HOME</Link>
         <h3
           data-testid="product-detail-name"
         >
@@ -66,6 +67,7 @@ class ProductDetails extends Component {
             Adicionar  ao  Carrinho
           </button>
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <span data-testid="shopping-cart-size">{cartQty}</span>
             <RiShoppingCart2Line />
           </Link>
         </div>

@@ -12,12 +12,19 @@ class App extends Component {
     this.state = {
       cartList: [],
       itemList: [],
-
+      cartQty: 0,
     };
     this.setQuantity = this.setQuantity.bind(this);
     this.addItemCart = this.addItemCart.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.addQty = this.addQty.bind(this);
+    this.setCartQty = this.setCartQty.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
+    this.saveLocalStorage = this.saveLocalStorage.bind(this);
+  }
+
+  componentDidMount() {
+    this.getLocalStorage();
   }
 
   setQuantity(quantity, id) {
@@ -27,18 +34,38 @@ class App extends Component {
         return item;
       });
       return { cartList };
-    });
+    }, () => this.setCartQty());
+  }
+
+  setCartQty() {
+    const { cartList } = this.state;
+    const qty = cartList
+      .map(({ quantity }) => quantity)
+      .reduce((total, qtyItem) => total + qtyItem, 0);
+
+    this.setState({ cartQty: qty }, () => this.saveLocalStorage());
+  }
+
+  getLocalStorage() {
+    const stateStorageJson = localStorage.getItem('shopping_time') || '{}';
+    const stateStorage = JSON.parse(stateStorageJson);
+    this.setState({ ...stateStorage });
+  }
+
+  saveLocalStorage() {
+    localStorage.setItem('shopping_time', JSON.stringify(this.state));
   }
 
   addQty() {
     const { itemList } = this.state;
-    const cartList = itemList.reduce((list, item) => {
-      const includes = list.some(({ id }) => item.id === id);
+    const cartList = itemList.reduce((list, itemCart) => {
+      const includes = list.some(({ id }) => itemCart.id === id);
       if (includes) return list;
+      const item = { ...itemCart };
       item.quantity = itemList.filter(({ id }) => id === item.id).length;
       return [...list, item];
     }, []);
-    this.setState({ cartList });
+    this.setState({ cartList }, () => this.setCartQty());
   }
 
   removeItem(idItem) {
@@ -49,19 +76,24 @@ class App extends Component {
   }
 
   addItemCart(item) {
-    this.setState((prevState) => ({ itemList: [...prevState.cartList, item] }),
+    console.log('chamou');
+    this.setState((prevState) => ({ itemList: [...prevState.itemList, item] }),
       () => this.addQty());
   }
 
   render() {
-    const { cartList } = this.state;
+    const { cartList, cartQty } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route
             exact
             path="/"
-            render={ (props) => <Main { ...props } addItemCart={ this.addItemCart } /> }
+            render={ (props) => (<Main
+              { ...props }
+              addItemCart={ this.addItemCart }
+              cartQty={ cartQty }
+            />) }
           />
           <Route
             path="/shopping-cart"
@@ -79,6 +111,7 @@ class App extends Component {
             render={ (props) => (<ProductDetails
               { ...props }
               addItemCart={ this.addItemCart }
+              cartQty={ cartQty }
             />) }
           />
           <Route
