@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { string, number, func } from 'prop-types';
+
 import '../Main/CardList/Card.css';
 import { TiDelete } from 'react-icons/ti';
 

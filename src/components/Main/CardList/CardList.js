@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { string, number, arrayOf, shape, func } from 'prop-types';
+
 import Card from './Card';
 
 class CardList extends Component {

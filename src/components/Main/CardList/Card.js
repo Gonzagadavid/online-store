@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { string, number, func, bool } from 'prop-types';
 import { Link } from 'react-router-dom';
+
 import './Card.css';
 
 class Card extends Component {

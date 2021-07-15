@@ -3,6 +3,7 @@ import { string, number, arrayOf, shape, func } from 'prop-types';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
+
 import '../Main/Main.css';
 
 class ShoppingCart extends React.Component {

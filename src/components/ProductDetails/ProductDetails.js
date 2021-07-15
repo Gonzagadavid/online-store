@@ -3,6 +3,7 @@ import { shape, string, func } from 'prop-types';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
+
 import Rating from './Rating';
 
 class ProductDetails extends Component {
