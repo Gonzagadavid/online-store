@@ -76,7 +76,6 @@ class App extends Component {
   }
 
   addItemCart(item) {
-    console.log('chamou');
     this.setState((prevState) => ({ itemList: [...prevState.itemList, item] }),
       () => this.addQty());
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { shape, string, func } from 'prop-types';
+import { shape, string, func, number } from 'prop-types';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
