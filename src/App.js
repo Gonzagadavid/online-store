@@ -33,6 +33,7 @@ class App extends Component {
         if (item.id === id) item.quantity = quantity;
         return item;
       });
+      console.log(cartList);
       return { cartList };
     }, () => this.setCartQty());
   }

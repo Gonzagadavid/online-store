@@ -8,26 +8,39 @@ class CartItem extends Component {
   constructor(props) {
     super(props);
     this.handlerQty = this.handlerQty.bind(this);
+    this.availableQuantity = this.availableQuantity.bind(this);
     this.state = {
       quantity: props.quantity,
+      available: props.available,
     };
   }
 
   handlerQty({ target }, id) {
     const { name } = target;
-    const { quantity } = this.state;
+    const { quantity, available } = this.state;
     const { setQuantity } = this.props;
     const min = quantity === 1 && name === 'sub';
+    const max = quantity === available && name === 'add';
     const value = name === 'add' ? quantity + 1 : quantity - 1;
     this.setState({ quantity: min ? 1 : value }, () => {
       const { state } = this;
       setQuantity(state.quantity, id);
     });
+    this.setState({ quantity: max ? available : value }, () => {
+      const { state } = this;
+      setQuantity(state.quantity, id);
+    });
+  }
+
+  availableQuantity(event) {
+    const { value } = event.target;
+    this.setState({ available: value });
   }
 
   render() {
-    const { title, image, price, removeItem, id } = this.props;
+    const { title, image, price, removeItem, id, available } = this.props;
     const { quantity } = this.state;
+    console.log(available);
     return (
       <div className="Card" data-testid="product">
         <button type="button" onClick={ () => removeItem(id) }>
@@ -37,6 +50,9 @@ class CartItem extends Component {
         <h3 data-testid="shopping-cart-product-name">{ title }</h3>
         <img src={ image } alt={ title } />
         <p>{ `R$: ${price.toFixed(2)}` }</p>
+        <number>
+          {available}
+        </number>
         <button
           type="button"
           onClick={ (event) => this.handlerQty(event, id) }
@@ -69,6 +85,7 @@ CartItem.propTypes = {
   setQuantity: func.isRequired,
   quantity: number.isRequired,
   removeItem: func.isRequired,
+  available: number.isRequired,
 };
 
 CartItem.defaultProps = {

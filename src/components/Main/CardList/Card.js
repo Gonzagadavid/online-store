@@ -22,7 +22,7 @@ class Card extends Component {
 
   render() {
     const {
-      title, imagePath, price, addItem, category, query, idItem, freeShipping,
+      title, imagePath, price, addItem, category, query, idItem, freeShipping, available,
     } = this.props;
     const image = imagePath.replace(/-I.jpg/g, '-O.jpg');
     return (
@@ -41,7 +41,7 @@ class Card extends Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ () => addItem({ title, image, price, id: idItem }) }
+          onClick={ () => addItem({ title, image, price, id: idItem, available }) }
         >
           Adicionar ao Carrinho
         </button>
@@ -59,6 +59,7 @@ Card.propTypes = {
   category: string.isRequired,
   query: string.isRequired,
   freeShipping: bool.isRequired,
+  available: number.isRequired,
 
 };
 
