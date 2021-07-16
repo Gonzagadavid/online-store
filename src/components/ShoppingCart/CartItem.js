@@ -40,7 +40,6 @@ class CartItem extends Component {
   render() {
     const { title, image, price, removeItem, id, available } = this.props;
     const { quantity } = this.state;
-    console.log(available);
     return (
       <div className="Card" data-testid="product">
         <button type="button" onClick={ () => removeItem(id) }>
@@ -50,9 +49,9 @@ class CartItem extends Component {
         <h3 data-testid="shopping-cart-product-name">{ title }</h3>
         <img src={ image } alt={ title } />
         <p>{ `R$: ${price.toFixed(2)}` }</p>
-        <number>
+        <span>
           {available}
-        </number>
+        </span>
         <button
           type="button"
           onClick={ (event) => this.handlerQty(event, id) }
@@ -85,11 +84,12 @@ CartItem.propTypes = {
   setQuantity: func.isRequired,
   quantity: number.isRequired,
   removeItem: func.isRequired,
-  available: number.isRequired,
+  available: number,
 };
 
 CartItem.defaultProps = {
   id: 'not found',
+  available: 0,
 };
 
 export default CartItem;

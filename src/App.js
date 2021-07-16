@@ -11,13 +11,11 @@ class App extends Component {
     super();
     this.state = {
       cartList: [],
-      itemList: [],
       cartQty: 0,
     };
     this.setQuantity = this.setQuantity.bind(this);
     this.addItemCart = this.addItemCart.bind(this);
     this.removeItem = this.removeItem.bind(this);
-    this.addQty = this.addQty.bind(this);
     this.setCartQty = this.setCartQty.bind(this);
     this.getLocalStorage = this.getLocalStorage.bind(this);
     this.saveLocalStorage = this.saveLocalStorage.bind(this);
@@ -33,7 +31,6 @@ class App extends Component {
         if (item.id === id) item.quantity = quantity;
         return item;
       });
-      console.log(cartList);
       return { cartList };
     }, () => this.setCartQty());
   }
@@ -57,28 +54,21 @@ class App extends Component {
     localStorage.setItem('shopping_time', JSON.stringify(this.state));
   }
 
-  addQty() {
-    const { itemList } = this.state;
-    const cartList = itemList.reduce((list, itemCart) => {
-      const includes = list.some(({ id }) => itemCart.id === id);
-      if (includes) return list;
-      const item = { ...itemCart };
-      item.quantity = itemList.filter(({ id }) => id === item.id).length;
-      return [...list, item];
-    }, []);
-    this.setState({ cartList }, () => this.setCartQty());
-  }
-
   removeItem(idItem) {
     this.setState((prev) => {
-      const clearList = prev.itemList.filter(({ id }) => id !== idItem);
-      return { itemList: clearList };
-    }, () => this.addQty());
+      const clearList = prev.cartList.filter(({ id }) => id !== idItem);
+      return { cartList: clearList };
+    });
   }
 
   addItemCart(item) {
-    this.setState((prevState) => ({ itemList: [...prevState.itemList, item] }),
-      () => this.addQty());
+    const { id } = item;
+    const { cartList } = this.state;
+    const includes = cartList.find((itemCart) => itemCart.id === id);
+    if (includes) return this.setQuantity(includes.quantity + 1, id);
+    item.quantity = 1;
+    this.setState((prevState) => ({ cartList: [...prevState.cartList, item] }),
+      () => this.setCartQty());
   }
 
   render() {
