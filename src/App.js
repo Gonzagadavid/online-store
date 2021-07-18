@@ -58,7 +58,7 @@ class App extends Component {
     this.setState((prev) => {
       const clearList = prev.cartList.filter(({ id }) => id !== idItem);
       return { cartList: clearList };
-    });
+    }, () => this.setCartQty());
   }
 
   addItemCart(item) {
