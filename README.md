@@ -1,7 +1,7 @@
 <div align="center"><h1>Online Store</h1></div>
 
 ## Equipe:
-<a href="https://github.com/Gonzagadavid">David Gonzaga</a>/ <a href="https://github.com/R-R-Freitas">Rodrigo Freitas</a>/ <a href="https://github.com/cristianocsl">Cristiano Lima</a>/ <a href="https://github.com/vsdiaman">Vitor Diamantino</a>/ <a href="https://github.com/PHSPinheiro">Pedro Pinheiro</a>
+<a href="https://github.com/Gonzagadavid">David Gonzaga</a> / <a href="https://github.com/R-R-Freitas">Rodrigo Freitas</a> / <a href="https://github.com/cristianocsl">Cristiano Lima</a> / <a href="https://github.com/vsdiaman">Vitor Diamantino</a> / <a href="https://github.com/PHSPinheiro">Pedro Pinheiro</a>
 
 ## Projeto de avaliação feito em equipe durante o curso da Trybe, buscando colocar em prática:
 
